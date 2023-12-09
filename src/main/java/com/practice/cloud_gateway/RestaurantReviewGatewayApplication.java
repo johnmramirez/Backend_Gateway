@@ -1,5 +1,6 @@
 package com.practice.cloud_gateway;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -9,20 +10,24 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class RestaurantReviewGatewayApplication {
 
+	@Value("${cloud_gateway.forwardToHost}")
+	private String forwardToHost;
+
 	public static void main(String[] args) {
 		SpringApplication.run(RestaurantReviewGatewayApplication.class, args);
 	}
 
 	@Bean
 	public RouteLocator myRoutes(RouteLocatorBuilder builder) {
+		String uri = "http://" + forwardToHost + "/reviews";
 		return builder.routes()
 				.route("reviews", p -> p
 						.path("/reviews")
-						.uri("http://localhost:8081/reviews"))
+						.uri(uri))
 				.route("reviewsById", p -> p
 						.path("/reviews/**")
 						.filters(rw -> rw.rewritePath("/reviews/(?<segment>.*)", "/reviews/${segment}"))
-						.uri("http://localhost:8081/reviews/"))
+						.uri(uri))
 				.build();
 	}
 
