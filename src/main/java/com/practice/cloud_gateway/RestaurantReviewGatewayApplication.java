@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class RestaurantReviewGatewayApplication {
 
-	@Value("${cloud_gateway.forwardToHost}")
-	private String forwardToHost;
+	@Value("${cloud_gateway.forwardToService}")
+	private String forwardToService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestaurantReviewGatewayApplication.class, args);
@@ -19,7 +19,7 @@ public class RestaurantReviewGatewayApplication {
 
 	@Bean
 	public RouteLocator myRoutes(RouteLocatorBuilder builder) {
-		String uri = "http://" + forwardToHost + "/reviews";
+		String uri = "lb://" + forwardToService;
 		return builder.routes()
 				.route("reviews", p -> p
 						.path("/reviews")
