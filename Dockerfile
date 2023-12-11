@@ -4,7 +4,7 @@ VOLUME /tmp
 
 EXPOSE 8080
 
-ARG JAR_FILE=build/libs/cloud_gateway-1.1.0.jar
+ARG JAR_FILE=build/libs/cloud_gateway-1.1.1.jar
 
 ADD ${JAR_FILE} app.jar
 
