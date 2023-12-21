@@ -1,13 +1,14 @@
-# Restaurant_Review_Gateway
+# Backend Gateway
 
 ABOUT:
 
 A Spring Cloud Gateway service utilizing Java, and Spring Cloud Gateway.
-This service receives and forwards HTTP requests between Restaurant Review clients
-and the Restaurant Review backend system.
+This service receives and forwards HTTP requests between clients
+and the various backend systems.
 
-
-!!! This project is designed to be used as part of the project2a Restaurant Review ecosystem !!!
+USE:
+This app can be used with any of the backend system repos. To use with a specific
+system, switch to the branch with the same title as the backend system.
 
 \
 DOCKER:
