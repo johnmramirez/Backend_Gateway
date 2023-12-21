@@ -23,13 +23,6 @@ public class RestaurantReviewGatewayApplication {
 	public RouteLocator myRoutes(RouteLocatorBuilder builder) {
 		String uri = "lb://" + forwardToService;
 		return builder.routes()
-				.route("reviews", p -> p
-						.path("/reviews")
-						.uri(uri))
-				.route("reviewsById", p -> p
-						.path("/reviews/**")
-						.filters(rw -> rw.rewritePath("/reviews/(?<segment>.*)", "/reviews/${segment}"))
-						.uri(uri))
 				.build();
 	}
 

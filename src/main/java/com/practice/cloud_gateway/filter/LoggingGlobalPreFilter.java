@@ -22,7 +22,6 @@ public class LoggingGlobalPreFilter implements GlobalFilter {
 
         ServerHttpRequest request = exchange.getRequest()
                 .mutate()
-                .header("Content-Type", "application/json")
                 .build();
 
         logger.info("Global Pre Filter executed");
