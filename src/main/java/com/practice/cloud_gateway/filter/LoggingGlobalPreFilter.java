@@ -22,7 +22,7 @@ public class LoggingGlobalPreFilter implements GlobalFilter {
 
         ServerHttpRequest request = exchange.getRequest()
                 .mutate()
-                .header("Content-Type", "application/json")
+                .header("Content-Type", "audio/mpeg")
                 .build();
 
         logger.info("Global Pre Filter executed");
